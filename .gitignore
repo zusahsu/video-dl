@@ -1,0 +1,15 @@
+# Build artifacts
+build/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+
+# Cookies — may contain credentials
+cookies.txt
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
