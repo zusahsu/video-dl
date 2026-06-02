@@ -73,6 +73,7 @@ class VideoDL:
         self.build_ui()
         self.poll_queue()
         self.root.after(300, self._check_ffmpeg)
+        self.root.after(500, self._show_disclaimer)
 
     def _check_ffmpeg(self):
         if self.ffmpeg_path:
@@ -98,6 +99,16 @@ class VideoDL:
                 self._log("ffmpeg download failed. Running in limited mode.")
         else:
             self._log("ffmpeg not available. Running in limited mode.")
+
+    def _show_disclaimer(self):
+        messagebox.showinfo(
+            "免责声明 / Disclaimer",
+            "本软件仅供学习、研究与个人使用，严禁用于任何商业用途。\n"
+            "使用者应遵守目标网站的服务条款及相关法律法规，\n"
+            "因使用本软件产生的任何法律责任由使用者自行承担。\n\n"
+            "This software is for educational and personal use only.\n"
+            "Commercial use is strictly prohibited.",
+        )
 
     # ── UI ──────────────────────────────────────────────────
 
@@ -180,6 +191,14 @@ class VideoDL:
         self.dl_btn = ttk.Button(bt, text="Download", command=self.on_download, state=tk.DISABLED)
         self.dl_btn.pack(side=tk.RIGHT)
         ttk.Button(bt, text="Clear Log", command=self._clear_log).pack(side=tk.LEFT)
+
+        disclaimer = ttk.Label(
+            self.root,
+            text="免责声明：本软件仅供学习、研究与个人使用，严禁用于任何商业用途。",
+            foreground="gray",
+            padding=6,
+        )
+        disclaimer.pack(side=tk.BOTTOM)
 
     # ── helpers ─────────────────────────────────────────────
 
